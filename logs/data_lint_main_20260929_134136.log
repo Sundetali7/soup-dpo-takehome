@@ -1,0 +1,28 @@
+2026-09-29T13:43:00 $ soup data lint data/train.jsonl --format dpo --model /content/models/qwen2.5-0.5b-instruct
+2026-09-29T13:43:16                                                                            soup data lint (dpo)
+2026-09-29T13:43:16 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+2026-09-29T13:43:16 ┃ Check           ┃ Verdict ┃ Message                                                                                           ┃ Evidence                               ┃
+2026-09-29T13:43:16 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+2026-09-29T13:43:16 │ length_bias     │ MINOR   │ effect size (Cohen's d) = -0.372 (rejected longer than chosen); chosen is longer in 32.7% of rows │ mean chosen=73.2, mean rejected=86.4   │
+2026-09-29T13:43:16 │ identical_pairs │ OK      │ 0/450 rows (0.0%) have chosen == rejected (zero preference signal)                                │                                        │
+2026-09-29T13:43:16 │ near_duplicates │ OK      │ near-dup check skipped (datasketch not installed)                                                 │ pip install "soup-cli[data]" to enable │
+2026-09-29T13:43:16 │ prompt_leak     │ OK      │ 0/450 rows (0.0%) have the prompt echoed verbatim inside the completion                           │ min_prompt_len=40                      │
+2026-09-29T13:43:16 └─────────────────┴─────────┴───────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────┘
+2026-09-29T13:43:16 ╭────────── overall ───────────╮
+2026-09-29T13:43:16 │ MINOR — 450/450 rows scanned │
+2026-09-29T13:43:16 ╰──────────────────────────────╯
+2026-09-29T13:43:17 [exit code 0]
+2026-09-29T13:47:13 $ soup data lint data/train.jsonl --format dpo --model /content/models/qwen2.5-0.5b-instruct
+2026-09-29T13:47:23                                                                            soup data lint (dpo)
+2026-09-29T13:47:23 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+2026-09-29T13:47:23 ┃ Check           ┃ Verdict ┃ Message                                                                                           ┃ Evidence                               ┃
+2026-09-29T13:47:23 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+2026-09-29T13:47:23 │ length_bias     │ MINOR   │ effect size (Cohen's d) = -0.372 (rejected longer than chosen); chosen is longer in 32.7% of rows │ mean chosen=73.2, mean rejected=86.4   │
+2026-09-29T13:47:23 │ identical_pairs │ OK      │ 0/450 rows (0.0%) have chosen == rejected (zero preference signal)                                │                                        │
+2026-09-29T13:47:23 │ near_duplicates │ OK      │ near-dup check skipped (datasketch not installed)                                                 │ pip install "soup-cli[data]" to enable │
+2026-09-29T13:47:23 │ prompt_leak     │ OK      │ 0/450 rows (0.0%) have the prompt echoed verbatim inside the completion                           │ min_prompt_len=40                      │
+2026-09-29T13:47:23 └─────────────────┴─────────┴───────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────┘
+2026-09-29T13:47:23 ╭────────── overall ───────────╮
+2026-09-29T13:47:23 │ MINOR — 450/450 rows scanned │
+2026-09-29T13:47:23 ╰──────────────────────────────╯
+2026-09-29T13:47:24 [exit code 0]

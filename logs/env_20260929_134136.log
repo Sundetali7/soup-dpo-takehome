@@ -1,0 +1,30 @@
+2026-09-29T13:41:36 $ python --version; soup version; python -c "import torch,transformers,peft,trl;print('torch',torch.__version__,'cuda',torch.version.cuda,'bf16_supported',torch.cuda.is_bf16_supported(),'capability',torch.cuda.get_device_capability());print('transformers',transformers.__version__,'peft',peft.__version__,'trl',trl.__version__)"; nvidia-smi; free -h
+2026-09-29T13:41:36 Python 3.12.3
+2026-09-29T13:41:39 soup v0.75.1
+2026-09-29T13:41:39 https://github.com/MakazhanAlpamys/Soup
+2026-09-29T13:42:30 torch 2.14.0+cu130 cuda 13.0 bf16_supported True capability (7, 5)
+2026-09-29T13:42:30 transformers 5.17.0 peft 0.21.1 trl 0.29.1
+2026-09-29T13:42:33 Tue Sep 29 13:42:33 2026
+2026-09-29T13:42:33 +-----------------------------------------------------------------------------------------+
+2026-09-29T13:42:33 | NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
+2026-09-29T13:42:33 +-----------------------------------------+------------------------+----------------------+
+2026-09-29T13:42:33 | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+2026-09-29T13:42:33 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+2026-09-29T13:42:33 |                                         |                        |               MIG M. |
+2026-09-29T13:42:33 |=========================================+========================+======================|
+2026-09-29T13:42:33 |   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+2026-09-29T13:42:33 | N/A   40C    P0             25W /   70W |       0MiB /  15360MiB |      0%      Default |
+2026-09-29T13:42:33 |                                         |                        |                  N/A |
+2026-09-29T13:42:33 +-----------------------------------------+------------------------+----------------------+
+2026-09-29T13:42:33 
+2026-09-29T13:42:33 +-----------------------------------------------------------------------------------------+
+2026-09-29T13:42:33 | Processes:                                                                              |
+2026-09-29T13:42:33 |  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+2026-09-29T13:42:33 |        ID   ID                                                               Usage      |
+2026-09-29T13:42:33 |=========================================================================================|
+2026-09-29T13:42:33 |  No running processes found                                                             |
+2026-09-29T13:42:33 +-----------------------------------------------------------------------------------------+
+2026-09-29T13:42:33                total        used        free      shared  buff/cache   available
+2026-09-29T13:42:33 Mem:            12Gi       2.9Gi       832Mi       2.8Mi       9.2Gi       9.7Gi
+2026-09-29T13:42:33 Swap:             0B          0B          0B
+2026-09-29T13:42:33 [exit code 0]

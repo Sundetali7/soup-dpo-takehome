@@ -1,0 +1,6 @@
+2026-09-29T13:43:25 $ soup data doctor data/synth/train.jsonl -m /content/models/qwen2.5-0.5b-instruct --format dpo --max-length 512
+2026-09-29T13:43:26 File not found: data/synth/train.jsonl
+2026-09-29T13:43:26 [exit code 1]
+2026-09-29T13:47:34 $ soup data doctor data/synth/train.jsonl -m /content/models/qwen2.5-0.5b-instruct --format dpo --max-length 512
+2026-09-29T13:47:34 Error: format='dpo' is preference data — use soup data lint instead of soup data doctor.
+2026-09-29T13:47:34 [exit code 2]

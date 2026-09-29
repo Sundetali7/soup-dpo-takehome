@@ -1,0 +1,49 @@
+2026-09-29T14:07:34 $ python scripts/verify_training.py --base /content/models/qwen2.5-0.5b-instruct --adapter output_A --eval data/eval_pairs.jsonl --train data/train_with_meta.jsonl --controls --chat --out logs/verify_A_chat_20260929_134136.json
+2026-09-29T14:07:41 2026-09-29T14:07:41 device cuda | torch 2.14.0+cu130
+2026-09-29T14:07:41 2026-09-29T14:07:41 adapter file: {'n_tensors': 96, 'n_lora_B': 48, 'n_zero_B': 0, 'zero_B_examples': [], 'median_B_norm': 0.008228917606174946}
+2026-09-29T14:07:41 2026-09-29T14:07:41 target_modules: ['v_proj', 'q_proj']
+2026-09-29T14:07:42 
+2026-09-29T14:07:42 Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+2026-09-29T14:07:42 Loading weights:   0%|          | 1/290 [00:00<01:51,  2.60it/s]
+2026-09-29T14:07:43 Loading weights:  47%|████▋     | 137/290 [00:00<00:00, 362.77it/s]
+2026-09-29T14:07:43 Loading weights:  73%|███████▎  | 212/290 [00:00<00:00, 413.94it/s]
+2026-09-29T14:07:43 Loading weights:  95%|█████████▌| 276/290 [00:00<00:00, 441.20it/s]
+2026-09-29T14:07:43 Loading weights: 100%|██████████| 290/290 [00:00<00:00, 367.69it/s]
+2026-09-29T14:07:44 2026-09-29T14:07:44 load integrity: {'file_tensors': 96, 'live_lora_tensors': 96, 'missing_in_model': 0, 'missing_examples': [], 'value_mismatch': 0}
+2026-09-29T14:07:44 2026-09-29T14:07:44 --- REAL adapter | format=chat-template ---
+2026-09-29T14:08:21 2026-09-29T14:08:21   PASS  C1_B_nonzero(>=90% modules)
+2026-09-29T14:08:21 2026-09-29T14:08:21   PASS  C2_all_keys_loaded
+2026-09-29T14:08:21 2026-09-29T14:08:21   PASS  C3_adapter_changes_logits(>1e-3)
+2026-09-29T14:08:21 2026-09-29T14:08:21   PASS  C4a_heldout_margin_CI_lower>0
+2026-09-29T14:08:21 2026-09-29T14:08:21   PASS  C4b_heldout_reward_acc>0.5(p<0.05)
+2026-09-29T14:08:21 2026-09-29T14:08:21   delta_w: {'n_modules': 48, 'rel_dW_median': 0.0006319406456704714, 'rel_dW_max': 0.0011372100786850808, 'modules_unchanged': 0}
+2026-09-29T14:08:21 2026-09-29T14:08:21   active : {'max_abs_logit_diff': 0.4643043279647827, 'mean_max_abs_logit_diff': 0.339122973382473}
+2026-09-29T14:08:21 2026-09-29T14:08:21   eval   : {'n': 50, 'margin_mean': 0.05560985946655274, 'margin_ci95': [0.03656573104858399, 0.07420090866088867], 'implicit_reward_acc': 0.78, 'implicit_reward_acc_p': 4.5107450535653015e-05, 'chosen_reward_mean': 0.010819019317626952, 'rejected_reward_mean': -0.04479084014892578, 'raw_pref_acc_tuned': 0.66, 'raw_pref_acc_base': 0.66}
+2026-09-29T14:08:21 2026-09-29T14:08:21   train  : {'n': 50, 'margin_mean': 0.06989301300048828, 'margin_ci95': [0.05244572448730469, 0.08950019836425781], 'implicit_reward_acc': 0.9, 'implicit_reward_acc_p': 2.104926011270436e-09, 'chosen_reward_mean': 0.019303474426269535, 'rejected_reward_mean': -0.05058953857421875, 'raw_pref_acc_tuned': 0.66, 'raw_pref_acc_base': 0.66}
+2026-09-29T14:08:21 2026-09-29T14:08:21   per rejected_type: {'exact_copy': {'n': 1, 'mean_margin': 0.099, 'acc': 1.0}, 'grammar_broken': {'n': 4, 'mean_margin': 0.0058, 'acc': 0.75}, 'hallucination': {'n': 7, 'mean_margin': 0.1105, 'acc': 1.0}, 'incomplete_rewrite': {'n': 9, 'mean_margin': 0.079, 'acc': 0.89}, 'meaning_loss': {'n': 3, 'mean_margin': 0.013, 'acc': 0.67}, 'over_softening': {'n': 6, 'mean_margin': 0.0228, 'acc': 0.67}, 'register_mismatch': {'n': 2, 'mean_margin': 0.1683, 'acc': 1.0}, 'residual_toxicity': {'n': 9, 'mean_margin': 0.0152, 'acc': 0.56}, 'surface_masking': {'n': 3, 'mean_margin': 0.0151, 'acc': 0.67}, 'wrong_tone_shift': {'n': 6, 'mean_margin': 0.0799, 'acc': 0.83}}
+2026-09-29T14:08:21 2026-09-29T14:08:21   => REAL adapter: PASS
+2026-09-29T14:08:21 2026-09-29T14:08:21 --- CONTROL null (B=0) | format=chat-template ---
+2026-09-29T14:08:39 2026-09-29T14:08:39   FAIL  C1_B_nonzero(>=90% modules)
+2026-09-29T14:08:39 2026-09-29T14:08:39   PASS  C2_all_keys_loaded
+2026-09-29T14:08:39 2026-09-29T14:08:39   FAIL  C3_adapter_changes_logits(>1e-3)
+2026-09-29T14:08:39 2026-09-29T14:08:39   FAIL  C4a_heldout_margin_CI_lower>0
+2026-09-29T14:08:39 2026-09-29T14:08:39   FAIL  C4b_heldout_reward_acc>0.5(p<0.05)
+2026-09-29T14:08:39 2026-09-29T14:08:39   delta_w: {'n_modules': 48, 'rel_dW_median': 0.0, 'rel_dW_max': 0.0, 'modules_unchanged': 48}
+2026-09-29T14:08:39 2026-09-29T14:08:39   active : {'max_abs_logit_diff': 0.0, 'mean_max_abs_logit_diff': 0.0}
+2026-09-29T14:08:39 2026-09-29T14:08:39   eval   : {'n': 50, 'margin_mean': 0.0, 'margin_ci95': [0.0, 0.0], 'implicit_reward_acc': 0.0, 'implicit_reward_acc_p': 1.0, 'chosen_reward_mean': 0.0, 'rejected_reward_mean': 0.0, 'raw_pref_acc_tuned': 0.66, 'raw_pref_acc_base': 0.66}
+2026-09-29T14:08:39 2026-09-29T14:08:39   per rejected_type: {'exact_copy': {'n': 1, 'mean_margin': 0.0, 'acc': 0.0}, 'grammar_broken': {'n': 4, 'mean_margin': 0.0, 'acc': 0.0}, 'hallucination': {'n': 7, 'mean_margin': 0.0, 'acc': 0.0}, 'incomplete_rewrite': {'n': 9, 'mean_margin': 0.0, 'acc': 0.0}, 'meaning_loss': {'n': 3, 'mean_margin': 0.0, 'acc': 0.0}, 'over_softening': {'n': 6, 'mean_margin': 0.0, 'acc': 0.0}, 'register_mismatch': {'n': 2, 'mean_margin': 0.0, 'acc': 0.0}, 'residual_toxicity': {'n': 9, 'mean_margin': 0.0, 'acc': 0.0}, 'surface_masking': {'n': 3, 'mean_margin': 0.0, 'acc': 0.0}, 'wrong_tone_shift': {'n': 6, 'mean_margin': 0.0, 'acc': 0.0}}
+2026-09-29T14:08:39 2026-09-29T14:08:39   => CONTROL null (B=0): FAIL
+2026-09-29T14:08:39 2026-09-29T14:08:39 --- CONTROL random (same norms) | format=chat-template ---
+2026-09-29T14:08:58 2026-09-29T14:08:58   PASS  C1_B_nonzero(>=90% modules)
+2026-09-29T14:08:58 2026-09-29T14:08:58   PASS  C2_all_keys_loaded
+2026-09-29T14:08:58 2026-09-29T14:08:58   PASS  C3_adapter_changes_logits(>1e-3)
+2026-09-29T14:08:58 2026-09-29T14:08:58   FAIL  C4a_heldout_margin_CI_lower>0
+2026-09-29T14:08:58 2026-09-29T14:08:58   FAIL  C4b_heldout_reward_acc>0.5(p<0.05)
+2026-09-29T14:08:58 2026-09-29T14:08:58   delta_w: {'n_modules': 48, 'rel_dW_median': 0.0006289422825923685, 'rel_dW_max': 0.001151941527135021, 'modules_unchanged': 0}
+2026-09-29T14:08:58 2026-09-29T14:08:58   active : {'max_abs_logit_diff': 0.088592529296875, 'mean_max_abs_logit_diff': 0.07672984153032303}
+2026-09-29T14:08:58 2026-09-29T14:08:58   eval   : {'n': 50, 'margin_mean': -7.669258117675782e-05, 'margin_ci95': [-0.0008256187438964844, 0.000751262664794922], 'implicit_reward_acc': 0.46, 'implicit_reward_acc_p': 0.7600561691508361, 'chosen_reward_mean': 0.0015564441680908203, 'rejected_reward_mean': 0.0016331367492675782, 'raw_pref_acc_tuned': 0.66, 'raw_pref_acc_base': 0.66}
+2026-09-29T14:08:58 2026-09-29T14:08:58   per rejected_type: {'exact_copy': {'n': 1, 'mean_margin': 0.0004, 'acc': 1.0}, 'grammar_broken': {'n': 4, 'mean_margin': 0.0008, 'acc': 0.75}, 'hallucination': {'n': 7, 'mean_margin': -0.0011, 'acc': 0.29}, 'incomplete_rewrite': {'n': 9, 'mean_margin': 0.0003, 'acc': 0.44}, 'meaning_loss': {'n': 3, 'mean_margin': 0.0013, 'acc': 0.67}, 'over_softening': {'n': 6, 'mean_margin': 0.0003, 'acc': 0.67}, 'register_mismatch': {'n': 2, 'mean_margin': 0.0051, 'acc': 1.0}, 'residual_toxicity': {'n': 9, 'mean_margin': -0.0002, 'acc': 0.44}, 'surface_masking': {'n': 3, 'mean_margin': -0.0007, 'acc': 0.33}, 'wrong_tone_shift': {'n': 6, 'mean_margin': -0.0025, 'acc': 0.0}}
+2026-09-29T14:08:58 2026-09-29T14:08:58   => CONTROL random (same norms): FAIL
+2026-09-29T14:08:58 2026-09-29T14:08:58 CONTROLS REJECTED AS EXPECTED: True  | REAL: PASS
+2026-09-29T14:08:58 2026-09-29T14:08:58 written logs/verify_A_chat_20260929_134136.json
+2026-09-29T14:08:59 [exit code 0]

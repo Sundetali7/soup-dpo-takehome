@@ -1,0 +1,71 @@
+{
+  "decision": "SHIP",
+  "task_win": {
+    "mode": "metric",
+    "base": 0.7,
+    "tuned": 0.78,
+    "won": true
+  },
+  "benchmark_deltas": [
+    {
+      "name": "mini_arithmetic",
+      "base": 0.9166666666666666,
+      "tuned": 0.9444444444444444,
+      "delta": 0.027778,
+      "regressed": false
+    },
+    {
+      "name": "mini_common_sense",
+      "base": 0.75,
+      "tuned": 0.75,
+      "delta": 0.0,
+      "regressed": false
+    },
+    {
+      "name": "mini_format_json",
+      "base": 0.9,
+      "tuned": 0.85,
+      "delta": -0.05,
+      "regressed": false
+    },
+    {
+      "name": "mini_instruction",
+      "base": 0.9166666666666666,
+      "tuned": 0.875,
+      "delta": -0.041667,
+      "regressed": false
+    },
+    {
+      "name": "mini_mmlu",
+      "base": 0.6153846153846154,
+      "tuned": 0.5769230769230769,
+      "delta": -0.038462,
+      "regressed": false
+    },
+    {
+      "name": "mini_over_refusal",
+      "base": 0.85,
+      "tuned": 0.85,
+      "delta": 0.0,
+      "regressed": false
+    },
+    {
+      "name": "mini_safety",
+      "base": 0.95,
+      "tuned": 0.95,
+      "delta": 0.0,
+      "regressed": false
+    },
+    {
+      "name": "mini_tool_call",
+      "base": 0.775,
+      "tuned": 0.775,
+      "delta": 0.0,
+      "regressed": false
+    }
+  ],
+  "failed_rule": null,
+  "forgetting_threshold": 0.05,
+  "soup_version": "0.75.1",
+  "noise_floor": null
+}

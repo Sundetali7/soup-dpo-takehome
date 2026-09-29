@@ -1,0 +1,256 @@
+2026-09-29T13:58:22 $ soup train --config configs/run_B.yaml --yes --name dpo_B_20260929_134136 --tensorboard
+2026-09-29T13:58:22 Loading config from configs/run_B.yaml...
+2026-09-29T13:58:22 TensorBoard logging enabled
+2026-09-29T13:58:24 ╭─────────────────────────────────────────────────────────────────────────────────────────── Training Setup ───────────────────────────────────────────────────────────────────────────────────────────╮
+2026-09-29T13:58:24 │ Device:  Tesla T4                                                                                                                                                                                    │
+2026-09-29T13:58:24 │ Memory:  14.6 GB                                                                                                                                                                                     │
+2026-09-29T13:58:24 │ Model:   /content/models/qwen2.5-0.5b-instruct                                                                                                                                                       │
+2026-09-29T13:58:24 │ Task:    dpo                                                                                                                                                                                         │
+2026-09-29T13:58:24 │ Backend: transformers                                                                                                                                                                                │
+2026-09-29T13:58:24 │ LoRA:    r=16, alpha=32                                                                                                                                                                              │
+2026-09-29T13:58:24 │ Quant:   4bit                                                                                                                                                                                        │
+2026-09-29T13:58:24 │ Seed:    42                                                                                                                                                                                          │
+2026-09-29T13:58:24 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+2026-09-29T13:58:24 Loading dataset...
+2026-09-29T13:58:24 Loaded: 405 train samples
+2026-09-29T13:58:24 Run ID: run_20260929_135824_aeee5bb6
+2026-09-29T13:58:24 Setting up model + trainer...
+2026-09-29T13:58:31 Loading tokenizer: /content/models/qwen2.5-0.5b-instruct
+2026-09-29T13:58:31 ╭────────────────────────────────────────────────────────────────────────────────── Layer streaming disk pre-flight ───────────────────────────────────────────────────────────────────────────────────╮
+2026-09-29T13:58:31 │ HF/local source: 0.99 GB                                                                                                                                                                             │
+2026-09-29T13:58:31 │ Soup materialized copy: 0.00 GB (no write required)                                                                                                                                                  │
+2026-09-29T13:58:31 │ Layer-shard cache: 0.25 GB (reusable)                                                                                                                                                                │
+2026-09-29T13:58:31 │ Projected total on disk: 1.24 GB                                                                                                                                                                     │
+2026-09-29T13:58:31 │ Additional writes before training: 0.00 GB                                                                                                                                                           │
+2026-09-29T13:58:31 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+2026-09-29T13:58:31 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+2026-09-29T13:58:32 Preparing layer shards -> /root/.soup/layer-stream/content__models__qwen2.5-0.5b-instruct
+2026-09-29T13:58:32 ╭─────────────────────────────────────────────────────────────────────────────────────── training.stream_layers ───────────────────────────────────────────────────────────────────────────────────────╮
+2026-09-29T13:58:32 │ Layer streaming BETA — arch qwen2, tier ram                                                                                                                                                          │
+2026-09-29T13:58:32 │   base store   0.18 GB across 24 layers (pinned)                                                                                                                                                     │
+2026-09-29T13:58:32 │   VRAM buffers 2 x 8 MB + 1 x 0 MB large-layer slot = 15 MB                                                                                                                                          │
+2026-09-29T13:58:32 │   resident     272 MB extras + adapters                                                                                                                                                              │
+2026-09-29T13:58:32 │   peak VRAM    ~9.36 GB at batch 4 x seq 512 (8 rows — chosen+rejected are one concatenated tensor) (logits 8.71 GB)                                                                                 │
+2026-09-29T13:58:32 │   free VRAM    15.51 GB                                                                                                                                                                              │
+2026-09-29T13:58:32 │   forecast     5920-8705 tok/s — a compute-bound bound, not a promise                                                                                                                                │
+2026-09-29T13:58:32 │                (from 25.80 TFLOPS measured on this card now using float16 @ 675 MHz)                                                                                                                 │
+2026-09-29T13:58:32 │   ! accumulating 4x at batch 4: the base is re-read once per micro-batch. Per token that is free, but reaching effective batch 16 by raising training.batch_size instead measured ~2.5x faster.      │
+2026-09-29T13:58:32 │ Accumulation holds peak VRAM flat, so raise batch_size while the budget above allows, then accumulate for the rest.                                                                                  │
+2026-09-29T13:58:32 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+2026-09-29T13:58:32 Layer streaming is BETA: slower than resident training, but this model may not run resident on this card at all.
+2026-09-29T13:58:32 expandable_segments allocator hint not enabled: CUDA was already initialised before Soup could set it — the allocator reads PYTORCH_CUDA_ALLOC_CONF once, at context creation
+2026-09-29T13:58:33 Layer streaming ready: 24 layers, 0.18 GB pinned RAM store, 2 x 8 MB decoder buffers + 1 x 0 MB large-layer slot
+2026-09-29T13:58:33 LoRA applied: 8,798,208 trainable / 494,032,768 total (1.78%)
+2026-09-29T13:58:33 
+2026-09-29T13:58:33 Adding EOS to train dataset:   0%|          | 0/405 [00:00<?, ? examples/s]
+2026-09-29T13:58:33 Adding EOS to train dataset: 100%|██████████| 405/405 [00:00<00:00, 18389.90 examples/s]
+2026-09-29T13:58:35 
+2026-09-29T13:58:36 Tokenizing train dataset:   0%|          | 0/405 [00:00<?, ? examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset:  19%|█▉        | 76/405 [00:00<00:00, 749.02 examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset:  38%|███▊      | 155/405 [00:00<00:00, 763.95 examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset:  58%|█████▊    | 234/405 [00:00<00:00, 774.47 examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset:  79%|███████▊  | 318/405 [00:00<00:00, 795.80 examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset: 100%|██████████| 405/405 [00:00<00:00, 706.28 examples/s]
+2026-09-29T13:58:36 Tokenizing train dataset: 100%|██████████| 405/405 [00:00<00:00, 731.64 examples/s]
+2026-09-29T13:58:36 
+2026-09-29T13:58:36 Adding EOS to eval dataset:   0%|          | 0/45 [00:00<?, ? examples/s]
+2026-09-29T13:58:36 Adding EOS to eval dataset: 100%|██████████| 45/45 [00:00<00:00, 10712.51 examples/s]
+2026-09-29T13:58:38 
+2026-09-29T13:58:38 Tokenizing eval dataset:   0%|          | 0/45 [00:00<?, ? examples/s]
+2026-09-29T13:58:38 Tokenizing eval dataset: 100%|██████████| 45/45 [00:00<00:00, 548.43 examples/s]
+2026-09-29T13:58:38 
+2026-09-29T13:58:38 Map:   0%|          | 0/405 [00:00<?, ? examples/s]
+2026-09-29T13:58:38 Map: 100%|██████████| 405/405 [00:00<00:00, 5859.04 examples/s]
+2026-09-29T13:58:38 
+2026-09-29T13:58:38 Map:   0%|          | 0/45 [00:00<?, ? examples/s]
+2026-09-29T13:58:38 Map: 100%|██████████| 45/45 [00:00<00:00, 4198.97 examples/s]
+2026-09-29T13:58:38 Training started!
+2026-09-29T13:58:38 
+2026-09-29T13:58:38 [transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+2026-09-29T13:58:39 
+2026-09-29T13:58:47   0%|          | 0/52 [00:00<?, ?it/s]
+2026-09-29T13:58:51   2%|▏         | 1/52 [00:07<06:44,  7.93s/it]
+2026-09-29T13:58:51   4%|▍         | 2/52 [00:11<04:35,  5.52s/it]
+2026-09-29T13:58:51 
+2026-09-29T13:58:51 {'loss': '0.6931', 'grad_norm': '5.511', 'learning_rate': '5e-05', 'entropy': '2.29', 'num_tokens': '1.225e+04', 'logits/chosen': '-5.013', 'logits/rejected': '-4.981', 'mean_token_accuracy': '0.5613', 'rewards/chosen': '0', 'rewards/rejected': '0', 'rewards/accuracies': '0', 'rewards/margins': '0', 'logps/chosen': '-174.3', 'logps/rejected': '-194.7', 'epoch': '0.07843'}
+2026-09-29T13:58:51 
+2026-09-29T13:58:55   4%|▍         | 2/52 [00:11<04:35,  5.52s/it]
+2026-09-29T13:58:59   6%|▌         | 3/52 [00:15<03:55,  4.81s/it]
+2026-09-29T13:58:59   8%|▊         | 4/52 [00:19<03:38,  4.56s/it]
+2026-09-29T13:58:59 
+2026-09-29T13:58:59 {'loss': '0.6694', 'grad_norm': '6.563', 'learning_rate': '4.995e-05', 'entropy': '2.171', 'num_tokens': '2.389e+04', 'logits/chosen': '-5.06', 'logits/rejected': '-5.014', 'mean_token_accuracy': '0.5695', 'rewards/chosen': '0.07225', 'rewards/rejected': '0.02321', 'rewards/accuracies': '0.8125', 'rewards/margins': '0.04904', 'logps/chosen': '-167.6', 'logps/rejected': '-172.8', 'epoch': '0.1569'}
+2026-09-29T13:58:59 
+2026-09-29T13:59:02   8%|▊         | 4/52 [00:19<03:38,  4.56s/it]
+2026-09-29T13:59:07  10%|▉         | 5/52 [00:23<03:17,  4.20s/it]
+2026-09-29T13:59:07  12%|█▏        | 6/52 [00:27<03:17,  4.28s/it]
+2026-09-29T13:59:07 
+2026-09-29T13:59:07 {'loss': '0.5991', 'grad_norm': '5.384', 'learning_rate': '4.957e-05', 'entropy': '2.199', 'num_tokens': '3.514e+04', 'logits/chosen': '-4.964', 'logits/rejected': '-4.859', 'mean_token_accuracy': '0.5478', 'rewards/chosen': '0.2518', 'rewards/rejected': '0.04289', 'rewards/accuracies': '0.9688', 'rewards/margins': '0.2089', 'logps/chosen': '-166', 'logps/rejected': '-176.9', 'epoch': '0.2353'}
+2026-09-29T13:59:07 
+2026-09-29T13:59:11  12%|█▏        | 6/52 [00:27<03:17,  4.28s/it]
+2026-09-29T13:59:15  13%|█▎        | 7/52 [00:32<03:13,  4.29s/it]
+2026-09-29T13:59:15  15%|█▌        | 8/52 [00:36<03:09,  4.31s/it]
+2026-09-29T13:59:15 
+2026-09-29T13:59:15 {'loss': '0.511', 'grad_norm': '4.756', 'learning_rate': '4.882e-05', 'entropy': '2.159', 'num_tokens': '4.74e+04', 'logits/chosen': '-4.957', 'logits/rejected': '-4.804', 'mean_token_accuracy': '0.5741', 'rewards/chosen': '0.4329', 'rewards/rejected': '-0.02392', 'rewards/accuracies': '0.9688', 'rewards/margins': '0.4568', 'logps/chosen': '-172.2', 'logps/rejected': '-187.5', 'epoch': '0.3137'}
+2026-09-29T13:59:15 
+2026-09-29T13:59:20  15%|█▌        | 8/52 [00:36<03:09,  4.31s/it]
+2026-09-29T13:59:24  17%|█▋        | 9/52 [00:41<03:06,  4.35s/it]
+2026-09-29T13:59:24  19%|█▉        | 10/52 [00:45<02:59,  4.28s/it]
+2026-09-29T13:59:24 
+2026-09-29T13:59:24 {'loss': '0.4791', 'grad_norm': '4.785', 'learning_rate': '4.771e-05', 'entropy': '2.235', 'num_tokens': '5.95e+04', 'logits/chosen': '-4.927', 'logits/rejected': '-4.847', 'mean_token_accuracy': '0.5676', 'rewards/chosen': '0.6443', 'rewards/rejected': '0.05863', 'rewards/accuracies': '0.9062', 'rewards/margins': '0.5857', 'logps/chosen': '-167.3', 'logps/rejected': '-203.2', 'epoch': '0.3922'}
+2026-09-29T13:59:24 
+2026-09-29T13:59:27  19%|█▉        | 10/52 [00:45<02:59,  4.28s/it][W929 13:59:27.315620790 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 1736441856 bytes (free: 1633484800, total: 15637086208).
+2026-09-29T13:59:28 
+2026-09-29T13:59:32  21%|██        | 11/52 [00:49<02:52,  4.20s/it]
+2026-09-29T13:59:32  23%|██▎       | 12/52 [00:53<02:46,  4.15s/it]
+2026-09-29T13:59:32 
+2026-09-29T13:59:32 {'loss': '0.4401', 'grad_norm': '4.629', 'learning_rate': '4.626e-05', 'entropy': '2.122', 'num_tokens': '7.055e+04', 'logits/chosen': '-4.783', 'logits/rejected': '-4.688', 'mean_token_accuracy': '0.5616', 'rewards/chosen': '0.6728', 'rewards/rejected': '-0.1036', 'rewards/accuracies': '0.9375', 'rewards/margins': '0.7764', 'logps/chosen': '-155.9', 'logps/rejected': '-170.1', 'epoch': '0.4706'}
+2026-09-29T13:59:32 
+2026-09-29T13:59:36  23%|██▎       | 12/52 [00:53<02:46,  4.15s/it]
+2026-09-29T13:59:40  25%|██▌       | 13/52 [00:57<02:40,  4.12s/it]
+2026-09-29T13:59:40  27%|██▋       | 14/52 [01:01<02:37,  4.14s/it]
+2026-09-29T13:59:40 
+2026-09-29T13:59:40 {'loss': '0.3508', 'grad_norm': '4.025', 'learning_rate': '4.54e-05', 'entropy': '2.199', 'num_tokens': '8.209e+04', 'logits/chosen': '-4.749', 'logits/rejected': '-4.628', 'mean_token_accuracy': '0.5494', 'rewards/chosen': '0.7186', 'rewards/rejected': '-0.3899', 'rewards/accuracies': '0.9688', 'rewards/margins': '1.108', 'logps/chosen': '-170.7', 'logps/rejected': '-199.2', 'epoch': '0.549'}
+2026-09-29T13:59:40 
+2026-09-29T13:59:44  27%|██▋       | 14/52 [01:01<02:37,  4.14s/it]
+2026-09-29T13:59:49  29%|██▉       | 15/52 [01:05<02:29,  4.05s/it]
+2026-09-29T13:59:49  31%|███       | 16/52 [01:09<02:30,  4.17s/it]
+2026-09-29T13:59:49 
+2026-09-29T13:59:49 {'loss': '0.3075', 'grad_norm': '3.344', 'learning_rate': '4.348e-05', 'entropy': '2.209', 'num_tokens': '9.411e+04', 'logits/chosen': '-4.707', 'logits/rejected': '-4.665', 'mean_token_accuracy': '0.5453', 'rewards/chosen': '1.008', 'rewards/rejected': '-0.5004', 'rewards/accuracies': '0.9375', 'rewards/margins': '1.508', 'logps/chosen': '-175.3', 'logps/rejected': '-202.3', 'epoch': '0.6275'}
+2026-09-29T13:59:49 
+2026-09-29T13:59:51  31%|███       | 16/52 [01:09<02:30,  4.17s/it][W929 13:59:51.727601238 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 1740636160 bytes (free: 1235025920, total: 15637086208).
+2026-09-29T13:59:53 
+2026-09-29T13:59:58  33%|███▎      | 17/52 [01:14<02:30,  4.30s/it]
+2026-09-29T13:59:58  35%|███▍      | 18/52 [01:18<02:29,  4.41s/it]
+2026-09-29T13:59:58 
+2026-09-29T13:59:58 {'loss': '0.2935', 'grad_norm': '3.187', 'learning_rate': '4.127e-05', 'entropy': '2.121', 'num_tokens': '1.061e+05', 'logits/chosen': '-4.539', 'logits/rejected': '-4.588', 'mean_token_accuracy': '0.564', 'rewards/chosen': '0.755', 'rewards/rejected': '-0.8137', 'rewards/accuracies': '0.9375', 'rewards/margins': '1.569', 'logps/chosen': '-170.3', 'logps/rejected': '-179.5', 'epoch': '0.7059'}
+2026-09-29T13:59:58 
+2026-09-29T14:00:03  35%|███▍      | 18/52 [01:18<02:29,  4.41s/it]
+2026-09-29T14:00:07  37%|███▋      | 19/52 [01:23<02:28,  4.51s/it]
+2026-09-29T14:00:07  38%|███▊      | 20/52 [01:28<02:25,  4.55s/it]
+2026-09-29T14:00:07 
+2026-09-29T14:00:07 {'loss': '0.2957', 'grad_norm': '6.2', 'learning_rate': '3.881e-05', 'entropy': '2.077', 'num_tokens': '1.195e+05', 'logits/chosen': '-4.464', 'logits/rejected': '-4.405', 'mean_token_accuracy': '0.5779', 'rewards/chosen': '0.6764', 'rewards/rejected': '-1.393', 'rewards/accuracies': '0.8125', 'rewards/margins': '2.07', 'logps/chosen': '-184.3', 'logps/rejected': '-228.4', 'epoch': '0.7843'}
+2026-09-29T14:00:07 
+2026-09-29T14:00:12  38%|███▊      | 20/52 [01:28<02:25,  4.55s/it]
+2026-09-29T14:00:16  40%|████      | 21/52 [01:32<02:21,  4.55s/it]
+2026-09-29T14:00:16  42%|████▏     | 22/52 [01:37<02:13,  4.44s/it]
+2026-09-29T14:00:16 
+2026-09-29T14:00:16 {'loss': '0.2291', 'grad_norm': '4.995', 'learning_rate': '3.614e-05', 'entropy': '2.116', 'num_tokens': '1.309e+05', 'logits/chosen': '-4.491', 'logits/rejected': '-4.365', 'mean_token_accuracy': '0.5493', 'rewards/chosen': '0.6747', 'rewards/rejected': '-1.599', 'rewards/accuracies': '0.9062', 'rewards/margins': '2.274', 'logps/chosen': '-154.6', 'logps/rejected': '-188.6', 'epoch': '0.8627'}
+2026-09-29T14:00:16 
+2026-09-29T14:00:20  42%|████▏     | 22/52 [01:37<02:13,  4.44s/it]
+2026-09-29T14:00:22  44%|████▍     | 23/52 [01:41<02:09,  4.45s/it][W929 14:00:22.767333406 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 1906311168 bytes (free: 945618944, total: 15637086208).
+2026-09-29T14:00:26 
+2026-09-29T14:00:26  46%|████▌     | 24/52 [01:46<02:09,  4.63s/it]
+2026-09-29T14:00:26 
+2026-09-29T14:00:26 {'loss': '0.2324', 'grad_norm': '4.463', 'learning_rate': '3.331e-05', 'entropy': '2.146', 'num_tokens': '1.429e+05', 'logits/chosen': '-4.326', 'logits/rejected': '-4.356', 'mean_token_accuracy': '0.5561', 'rewards/chosen': '0.6236', 'rewards/rejected': '-1.856', 'rewards/accuracies': '0.9062', 'rewards/margins': '2.48', 'logps/chosen': '-167.8', 'logps/rejected': '-218.9', 'epoch': '0.9412'}
+2026-09-29T14:00:26 
+2026-09-29T14:00:30  46%|████▌     | 24/52 [01:46<02:09,  4.63s/it]
+2026-09-29T14:00:31  48%|████▊     | 25/52 [01:51<02:05,  4.65s/it][W929 14:00:31.361434534 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 1946157056 bytes (free: 379387904, total: 15637086208).
+2026-09-29T14:00:33 
+2026-09-29T14:00:33  50%|█████     | 26/52 [01:53<01:43,  3.97s/it]
+2026-09-29T14:00:33 
+2026-09-29T14:00:33 {'loss': '0.2543', 'grad_norm': 'nan', 'learning_rate': '3.035e-05', 'entropy': '2.112', 'num_tokens': '1.518e+05', 'logits/chosen': '-4.391', 'logits/rejected': '-4.252', 'mean_token_accuracy': '0.5655', 'rewards/chosen': '0.328', 'rewards/rejected': '-2.565', 'rewards/accuracies': '1', 'rewards/margins': '2.893', 'logps/chosen': '-184.7', 'logps/rejected': '-286.5', 'epoch': '1'}
+2026-09-29T14:00:33 
+2026-09-29T14:00:37  50%|█████     | 26/52 [01:53<01:43,  3.97s/it]
+2026-09-29T14:00:41  52%|█████▏    | 27/52 [01:58<01:41,  4.08s/it]
+2026-09-29T14:00:41  54%|█████▍    | 28/52 [02:01<01:35,  3.99s/it]
+2026-09-29T14:00:41 
+2026-09-29T14:00:41 {'loss': '0.1611', 'grad_norm': '1.685', 'learning_rate': '2.883e-05', 'entropy': '2.141', 'num_tokens': '1.636e+05', 'logits/chosen': '-4.315', 'logits/rejected': '-4.261', 'mean_token_accuracy': '0.545', 'rewards/chosen': '1.182', 'rewards/rejected': '-2.736', 'rewards/accuracies': '0.9375', 'rewards/margins': '3.918', 'logps/chosen': '-176.3', 'logps/rejected': '-204.1', 'epoch': '1.078'}
+2026-09-29T14:00:41 
+2026-09-29T14:00:45  54%|█████▍    | 28/52 [02:01<01:35,  3.99s/it]
+2026-09-29T14:00:49  56%|█████▌    | 29/52 [02:05<01:31,  4.00s/it]
+2026-09-29T14:00:49  58%|█████▊    | 30/52 [02:10<01:32,  4.21s/it]
+2026-09-29T14:00:49 
+2026-09-29T14:00:49 {'loss': '0.1471', 'grad_norm': '2.014', 'learning_rate': '2.577e-05', 'entropy': '2.127', 'num_tokens': '1.753e+05', 'logits/chosen': '-4.228', 'logits/rejected': '-4.191', 'mean_token_accuracy': '0.5402', 'rewards/chosen': '0.9139', 'rewards/rejected': '-2.265', 'rewards/accuracies': '0.9688', 'rewards/margins': '3.178', 'logps/chosen': '-172.4', 'logps/rejected': '-201.6', 'epoch': '1.157'}
+2026-09-29T14:00:49 
+2026-09-29T14:00:54  58%|█████▊    | 30/52 [02:10<01:32,  4.21s/it]
+2026-09-29T14:00:58  60%|█████▉    | 31/52 [02:14<01:27,  4.18s/it]
+2026-09-29T14:00:58  62%|██████▏   | 32/52 [02:18<01:24,  4.21s/it]
+2026-09-29T14:00:58 
+2026-09-29T14:00:58 {'loss': '0.1195', 'grad_norm': '2.107', 'learning_rate': '2.269e-05', 'entropy': '2.018', 'num_tokens': '1.875e+05', 'logits/chosen': '-4.127', 'logits/rejected': '-4.139', 'mean_token_accuracy': '0.5692', 'rewards/chosen': '0.8074', 'rewards/rejected': '-2.959', 'rewards/accuracies': '1', 'rewards/margins': '3.767', 'logps/chosen': '-173.6', 'logps/rejected': '-225.8', 'epoch': '1.235'}
+2026-09-29T14:00:58 
+2026-09-29T14:01:02  62%|██████▏   | 32/52 [02:18<01:24,  4.21s/it]
+2026-09-29T14:01:06  63%|██████▎   | 33/52 [02:23<01:19,  4.21s/it]
+2026-09-29T14:01:06  65%|██████▌   | 34/52 [02:27<01:16,  4.27s/it]
+2026-09-29T14:01:06 
+2026-09-29T14:01:06 {'loss': '0.06797', 'grad_norm': '1.714', 'learning_rate': '1.965e-05', 'entropy': '2.031', 'num_tokens': '2e+05', 'logits/chosen': '-4.064', 'logits/rejected': '-4.067', 'mean_token_accuracy': '0.5661', 'rewards/chosen': '0.1583', 'rewards/rejected': '-4.194', 'rewards/accuracies': '1', 'rewards/margins': '4.352', 'logps/chosen': '-169.2', 'logps/rejected': '-237.6', 'epoch': '1.314'}
+2026-09-29T14:01:06 
+2026-09-29T14:01:11  65%|██████▌   | 34/52 [02:27<01:16,  4.27s/it]
+2026-09-29T14:01:16  67%|██████▋   | 35/52 [02:32<01:14,  4.37s/it]
+2026-09-29T14:01:16  69%|██████▉   | 36/52 [02:36<01:10,  4.43s/it]
+2026-09-29T14:01:16 
+2026-09-29T14:01:16 {'loss': '0.09807', 'grad_norm': '5.465', 'learning_rate': '1.669e-05', 'entropy': '1.941', 'num_tokens': '2.125e+05', 'logits/chosen': '-3.858', 'logits/rejected': '-3.881', 'mean_token_accuracy': '0.5566', 'rewards/chosen': '-0.1933', 'rewards/rejected': '-4.834', 'rewards/accuracies': '0.9688', 'rewards/margins': '4.64', 'logps/chosen': '-183.3', 'logps/rejected': '-252.1', 'epoch': '1.392'}
+2026-09-29T14:01:16 
+2026-09-29T14:01:20  69%|██████▉   | 36/52 [02:36<01:10,  4.43s/it]
+2026-09-29T14:01:24  71%|███████   | 37/52 [02:41<01:05,  4.40s/it]
+2026-09-29T14:01:24  73%|███████▎  | 38/52 [02:45<01:00,  4.32s/it]
+2026-09-29T14:01:24 
+2026-09-29T14:01:24 {'loss': '0.06872', 'grad_norm': '1.693', 'learning_rate': '1.386e-05', 'entropy': '2.037', 'num_tokens': '2.24e+05', 'logits/chosen': '-3.838', 'logits/rejected': '-3.75', 'mean_token_accuracy': '0.5321', 'rewards/chosen': '-0.5443', 'rewards/rejected': '-5.903', 'rewards/accuracies': '1', 'rewards/margins': '5.358', 'logps/chosen': '-164.4', 'logps/rejected': '-249.2', 'epoch': '1.471'}
+2026-09-29T14:01:24 
+2026-09-29T14:01:29  73%|███████▎  | 38/52 [02:45<01:00,  4.32s/it]
+2026-09-29T14:01:33  75%|███████▌  | 39/52 [02:49<00:58,  4.47s/it]
+2026-09-29T14:01:33  77%|███████▋  | 40/52 [02:54<00:52,  4.38s/it]
+2026-09-29T14:01:33 
+2026-09-29T14:01:33 {'loss': '0.08829', 'grad_norm': '2.629', 'learning_rate': '1.119e-05', 'entropy': '2.001', 'num_tokens': '2.361e+05', 'logits/chosen': '-3.697', 'logits/rejected': '-3.682', 'mean_token_accuracy': '0.5124', 'rewards/chosen': '-0.6852', 'rewards/rejected': '-5.186', 'rewards/accuracies': '0.9688', 'rewards/margins': '4.5', 'logps/chosen': '-182.8', 'logps/rejected': '-275.8', 'epoch': '1.549'}
+2026-09-29T14:01:33 
+2026-09-29T14:01:37  77%|███████▋  | 40/52 [02:54<00:52,  4.38s/it]
+2026-09-29T14:01:42  79%|███████▉  | 41/52 [02:58<00:47,  4.35s/it]
+2026-09-29T14:01:42  81%|████████  | 42/52 [03:02<00:43,  4.30s/it]
+2026-09-29T14:01:42 
+2026-09-29T14:01:42 {'loss': '0.1078', 'grad_norm': '6.503', 'learning_rate': '8.735e-06', 'entropy': '1.992', 'num_tokens': '2.475e+05', 'logits/chosen': '-3.505', 'logits/rejected': '-3.517', 'mean_token_accuracy': '0.5269', 'rewards/chosen': '-0.8992', 'rewards/rejected': '-6.733', 'rewards/accuracies': '0.9688', 'rewards/margins': '5.834', 'logps/chosen': '-176.5', 'logps/rejected': '-272.1', 'epoch': '1.627'}
+2026-09-29T14:01:42 
+2026-09-29T14:01:46  81%|████████  | 42/52 [03:02<00:43,  4.30s/it]
+2026-09-29T14:01:50  83%|████████▎ | 43/52 [03:06<00:38,  4.28s/it]
+2026-09-29T14:01:50  85%|████████▍ | 44/52 [03:11<00:34,  4.25s/it]
+2026-09-29T14:01:50 
+2026-09-29T14:01:50 {'loss': '0.1173', 'grad_norm': '6.694', 'learning_rate': '6.525e-06', 'entropy': '1.932', 'num_tokens': '2.596e+05', 'logits/chosen': '-3.58', 'logits/rejected': '-3.599', 'mean_token_accuracy': '0.5356', 'rewards/chosen': '-0.9665', 'rewards/rejected': '-7.643', 'rewards/accuracies': '0.9688', 'rewards/margins': '6.677', 'logps/chosen': '-183.2', 'logps/rejected': '-265.9', 'epoch': '1.706'}
+2026-09-29T14:01:50 
+2026-09-29T14:01:54  85%|████████▍ | 44/52 [03:11<00:34,  4.25s/it]
+2026-09-29T14:01:59  87%|████████▋ | 45/52 [03:15<00:30,  4.33s/it]
+2026-09-29T14:01:59  88%|████████▊ | 46/52 [03:20<00:26,  4.37s/it]
+2026-09-29T14:01:59 
+2026-09-29T14:01:59 {'loss': '0.1232', 'grad_norm': '7.517', 'learning_rate': '4.595e-06', 'entropy': '1.96', 'num_tokens': '2.718e+05', 'logits/chosen': '-3.634', 'logits/rejected': '-3.547', 'mean_token_accuracy': '0.5284', 'rewards/chosen': '-0.9921', 'rewards/rejected': '-6.171', 'rewards/accuracies': '1', 'rewards/margins': '5.179', 'logps/chosen': '-181.8', 'logps/rejected': '-233', 'epoch': '1.784'}
+2026-09-29T14:01:59 
+2026-09-29T14:02:03  88%|████████▊ | 46/52 [03:20<00:26,  4.37s/it]
+2026-09-29T14:02:08  90%|█████████ | 47/52 [03:24<00:21,  4.36s/it]
+2026-09-29T14:02:08  92%|█████████▏| 48/52 [03:28<00:17,  4.37s/it]
+2026-09-29T14:02:08 
+2026-09-29T14:02:08 {'loss': '0.0808', 'grad_norm': '2.173', 'learning_rate': '2.975e-06', 'entropy': '1.998', 'num_tokens': '2.837e+05', 'logits/chosen': '-3.56', 'logits/rejected': '-3.554', 'mean_token_accuracy': '0.5242', 'rewards/chosen': '-1.031', 'rewards/rejected': '-7.092', 'rewards/accuracies': '0.9688', 'rewards/margins': '6.061', 'logps/chosen': '-185', 'logps/rejected': '-260.3', 'epoch': '1.863'}
+2026-09-29T14:02:08 
+2026-09-29T14:02:12  92%|█████████▏| 48/52 [03:28<00:17,  4.37s/it]
+2026-09-29T14:02:16  94%|█████████▍| 49/52 [03:33<00:13,  4.37s/it]
+2026-09-29T14:02:16  96%|█████████▌| 50/52 [03:37<00:08,  4.27s/it]
+2026-09-29T14:02:16 
+2026-09-29T14:02:16 {'loss': '0.08147', 'grad_norm': '2.247', 'learning_rate': '1.688e-06', 'entropy': '2.007', 'num_tokens': '2.957e+05', 'logits/chosen': '-3.607', 'logits/rejected': '-3.625', 'mean_token_accuracy': '0.5317', 'rewards/chosen': '-0.4517', 'rewards/rejected': '-5.365', 'rewards/accuracies': '0.9688', 'rewards/margins': '4.913', 'logps/chosen': '-181.1', 'logps/rejected': '-231.3', 'epoch': '1.941'}
+2026-09-29T14:02:16 
+2026-09-29T14:02:21  96%|█████████▌| 50/52 [03:37<00:08,  4.27s/it]
+2026-09-29T14:02:23  98%|█████████▊| 51/52 [03:42<00:04,  4.52s/it]
+2026-09-29T14:02:23 100%|██████████| 52/52 [03:43<00:00,  3.65s/it]
+2026-09-29T14:02:23 
+2026-09-29T14:02:23 {'loss': '0.08084', 'grad_norm': '1.625', 'learning_rate': '7.551e-07', 'entropy': '2.011', 'num_tokens': '3.035e+05', 'logits/chosen': '-3.518', 'logits/rejected': '-3.5', 'mean_token_accuracy': '0.5648', 'rewards/chosen': '-0.8142', 'rewards/rejected': '-5.564', 'rewards/accuracies': '1', 'rewards/margins': '4.75', 'logps/chosen': '-165.7', 'logps/rejected': '-240.4', 'epoch': '2'}
+2026-09-29T14:02:23 
+2026-09-29T14:02:23 100%|██████████| 52/52 [03:43<00:00,  3.65s/it]
+2026-09-29T14:02:23 
+2026-09-29T14:02:23 {'train_runtime': '224.4', 'train_samples_per_second': '3.609', 'train_steps_per_second': '0.232', 'train_loss': '0.2576', 'epoch': '2'}
+2026-09-29T14:02:23 
+2026-09-29T14:02:24 100%|██████████| 52/52 [03:44<00:00,  3.65s/it]
+2026-09-29T14:02:24 100%|██████████| 52/52 [03:44<00:00,  4.32s/it]
+2026-09-29T14:02:24 ╭──────────────────────────────────────────────────────────────────────── Soup Training: /content/models/qwen2.5-0.5b-instruct ────────────────────────────────────────────────────────────────────────╮
+2026-09-29T14:02:24 │ Epoch 2.0/2   100%                                                                                                                                                                                   │
+2026-09-29T14:02:24 │ Step:  52/52                                                                                                                                                                                         │
+2026-09-29T14:02:24 │ Loss:  0.0808    LR: 7.55e-07                                                                                                                                                                        │
+2026-09-29T14:02:24 │ Speed: 0.23 it/s                                                                                                                                                                                     │
+2026-09-29T14:02:24 │ GPU peak: 8.1/14.6 GB                                                                                                                                                                                │
+2026-09-29T14:02:24 │ Grad:  1.6245                                                                                                                                                                                        │
+2026-09-29T14:02:24 ╰────────────────────────────────────────────────────────────────────────────────────────────── Tesla T4 ──────────────────────────────────────────────────────────────────────────────────────────────╯╭───────────────────────────────────────────────────────────────────────────────────────── Training Complete! ─────────────────────────────────────────────────────────────────────────────────────────╮
+2026-09-29T14:02:24 │ Loss: 0.6931 -> 0.0808                                                                                                                                                                               │
+2026-09-29T14:02:24 │ Duration: 3m                                                                                                                                                                                         │
+2026-09-29T14:02:24 │ Output: output_B                                                                                                                                                                                     │
+2026-09-29T14:02:24 │ Run ID: run_20260929_135824_aeee5bb6                                                                                                                                                                 │
+2026-09-29T14:02:24 │                                                                                                                                                                                                      │
+2026-09-29T14:02:24 │ Quick test:  soup chat --model output_B                                                                                                                                                              │
+2026-09-29T14:02:24 │ Push to HF:  soup push --model output_B                                                                                                                                                              │
+2026-09-29T14:02:24 │ Merge LoRA:  soup merge --adapter output_B                                                                                                                                                           │
+2026-09-29T14:02:24 │ Export GGUF: soup export --model output_B                                                                                                                                                            │
+2026-09-29T14:02:24 │ Run details: soup runs show run_20260929_135824_aeee5bb6                                                                                                                                             │
+2026-09-29T14:02:24 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+2026-09-29T14:02:26 [exit code 0]

@@ -1,0 +1,12 @@
+2026-09-29T13:43:17 $ soup data validate data/train.jsonl
+2026-09-29T13:43:19 Auto-detected format: dpo
+2026-09-29T13:43:19 Dataset is valid!
+2026-09-29T13:43:19 
+2026-09-29T13:43:19 450/450 rows valid for dpo format
+2026-09-29T13:43:20 [exit code 0]
+2026-09-29T13:47:24 $ soup data validate data/train.jsonl
+2026-09-29T13:47:24 Auto-detected format: dpo
+2026-09-29T13:47:24 Dataset is valid!
+2026-09-29T13:47:24 
+2026-09-29T13:47:24 450/450 rows valid for dpo format
+2026-09-29T13:47:25 [exit code 0]

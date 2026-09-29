@@ -1,0 +1,28 @@
+2026-09-29T13:48:09 $ python scripts/memory_budget.py /content/models/qwen2.5-0.5b-instruct 512 4 16 2 nf4 data/train.jsonl
+2026-09-29T13:48:14 config: {'h': 896, 'L': 24, 'I': 4864, 'heads': 14, 'kv': 2, 'V': 151936, 'tied': True}
+2026-09-29T13:48:14 real lengths: {'p50': 184, 'p95': 290, 'max': 401}
+2026-09-29T13:48:14 
+2026-09-29T13:48:14 === worst case, padded to max_length: seq=512 batch=4 -> 8 rows, LoRA r=16 on 2 modules/layer = 1.08M params ===
+2026-09-29T13:48:14   embeddings / tied lm_head fp16 (resident)        0.254 GB
+2026-09-29T13:48:14   decoder, ALL layers resident (no streaming)      0.187 GB
+2026-09-29T13:48:14   decoder, streamed: 2 buffers                     0.016 GB
+2026-09-29T13:48:14   1 layer dequantized to fp16 for compute          0.028 GB
+2026-09-29T13:48:14   LoRA w + grad + Adam (16 B/param)                0.016 GB
+2026-09-29T13:48:14   activations, checkpointing (layer inputs)        0.164 GB
+2026-09-29T13:48:14   logits fp32, x1 copy                             2.318 GB
+2026-09-29T13:48:14   PREDICTED torch peak (logits x1..x3)          2.80 - 7.43 GB
+2026-09-29T13:48:14   PREDICTED nvidia-smi (+0.4 ctx, +15% cache)   3.61 - 8.95 GB
+2026-09-29T13:48:14   DPO reference pass: no_grad, adapter disabled on SAME weights -> no extra weights, transient logits only
+2026-09-29T13:48:14 
+2026-09-29T13:48:14 === typical, p95 real length: seq=290 batch=4 -> 8 rows, LoRA r=16 on 2 modules/layer = 1.08M params ===
+2026-09-29T13:48:14   embeddings / tied lm_head fp16 (resident)        0.254 GB
+2026-09-29T13:48:14   decoder, ALL layers resident (no streaming)      0.187 GB
+2026-09-29T13:48:14   decoder, streamed: 2 buffers                     0.016 GB
+2026-09-29T13:48:14   1 layer dequantized to fp16 for compute          0.028 GB
+2026-09-29T13:48:14   LoRA w + grad + Adam (16 B/param)                0.016 GB
+2026-09-29T13:48:14   activations, checkpointing (layer inputs)        0.093 GB
+2026-09-29T13:48:14   logits fp32, x1 copy                             1.313 GB
+2026-09-29T13:48:14   PREDICTED torch peak (logits x1..x3)          1.72 - 4.35 GB
+2026-09-29T13:48:14   PREDICTED nvidia-smi (+0.4 ctx, +15% cache)   2.38 - 5.40 GB
+2026-09-29T13:48:14   DPO reference pass: no_grad, adapter disabled on SAME weights -> no extra weights, transient logits only
+2026-09-29T13:48:15 [exit code 0]

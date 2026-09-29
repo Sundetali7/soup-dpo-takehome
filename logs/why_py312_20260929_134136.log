@@ -1,0 +1,5 @@
+2026-09-29T13:42:46 $ python3 --version; pip index versions soup-cli 2>&1 | head -2
+2026-09-29T13:42:46 Python 3.12.3
+2026-09-29T13:42:47 WARNING: pip index is currently an experimental command. It may be removed/changed in a future release without prior warning.
+2026-09-29T13:42:47 soup-cli (0.72.4)
+2026-09-29T13:42:47 [exit code 0]

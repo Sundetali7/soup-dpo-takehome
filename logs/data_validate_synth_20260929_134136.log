@@ -1,0 +1,10 @@
+2026-09-29T13:43:24 $ soup data validate data/synth/train.jsonl
+2026-09-29T13:43:25 File not found: data/synth/train.jsonl
+2026-09-29T13:43:25 [exit code 1]
+2026-09-29T13:47:33 $ soup data validate data/synth/train.jsonl
+2026-09-29T13:47:33 Auto-detected format: dpo
+2026-09-29T13:47:33 Issues found:
+2026-09-29T13:47:33   ! 10 duplicate rows found
+2026-09-29T13:47:33 
+2026-09-29T13:47:33 510/510 rows valid for dpo format
+2026-09-29T13:47:34 [exit code 0]

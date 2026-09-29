@@ -1,0 +1,17 @@
+2026-09-29T13:43:22 $ soup data lint data/synth/train.jsonl --format dpo --model /content/models/qwen2.5-0.5b-instruct
+2026-09-29T13:43:23 File not found: data/synth/train.jsonl
+2026-09-29T13:43:24 [exit code 1]
+2026-09-29T13:47:25 $ soup data lint data/synth/train.jsonl --format dpo --model /content/models/qwen2.5-0.5b-instruct
+2026-09-29T13:47:32                                                                           soup data lint (dpo)
+2026-09-29T13:47:32 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+2026-09-29T13:47:32 ┃ Check           ┃ Verdict ┃ Message                                                                                          ┃ Evidence                               ┃
+2026-09-29T13:47:32 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+2026-09-29T13:47:32 │ length_bias     │ MAJOR   │ effect size (Cohen's d) = 1.265 (chosen longer than rejected); chosen is longer in 74.3% of rows │ mean chosen=65.4, mean rejected=37.5   │
+2026-09-29T13:47:32 │ identical_pairs │ MAJOR   │ 15/510 rows (2.9%) have chosen == rejected (zero preference signal)                              │                                        │
+2026-09-29T13:47:32 │ near_duplicates │ OK      │ near-dup check skipped (datasketch not installed)                                                │ pip install "soup-cli[data]" to enable │
+2026-09-29T13:47:32 │ prompt_leak     │ OK      │ 0/510 rows (0.0%) have the prompt echoed verbatim inside the completion                          │ min_prompt_len=40                      │
+2026-09-29T13:47:32 └─────────────────┴─────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┴────────────────────────────────────────┘
+2026-09-29T13:47:32 ╭────────── overall ───────────╮
+2026-09-29T13:47:32 │ MAJOR — 510/510 rows scanned │
+2026-09-29T13:47:32 ╰──────────────────────────────╯
+2026-09-29T13:47:33 [exit code 2]

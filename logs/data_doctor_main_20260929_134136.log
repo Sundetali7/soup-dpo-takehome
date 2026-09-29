@@ -1,0 +1,6 @@
+2026-09-29T13:43:20 $ soup data doctor data/train.jsonl -m /content/models/qwen2.5-0.5b-instruct --format dpo --max-length 512
+2026-09-29T13:43:22 Error: format='dpo' is preference data — use soup data lint instead of soup data doctor.
+2026-09-29T13:43:22 [exit code 2]
+2026-09-29T13:47:25 $ soup data doctor data/train.jsonl -m /content/models/qwen2.5-0.5b-instruct --format dpo --max-length 512
+2026-09-29T13:47:25 Error: format='dpo' is preference data — use soup data lint instead of soup data doctor.
+2026-09-29T13:47:25 [exit code 2]

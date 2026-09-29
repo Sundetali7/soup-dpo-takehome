@@ -1,0 +1,2 @@
+2026-09-29T15:50:28 $ pkill -f 'nvidia-smi --query-gpu'; nvidia-smi
+2026-09-29T15:50:28 [exit code -15]
