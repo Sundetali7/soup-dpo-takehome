@@ -1,0 +1,24 @@
+base: /content/models/qwen2.5-0.5b-instruct
+task: dpo
+data:
+  train: ./data/train.jsonl
+  format: dpo
+  max_length: 512
+  val_split: 0.1
+training:
+  epochs: 2
+  batch_size: 4
+  quantization: 4bit
+  dpo_beta: 0.1
+  logging_steps: 2
+  seed: 42
+  stream_layers: true
+  stream_source: ram
+  stream_buffers: 2
+  gradient_checkpointing: true
+  lr: 5e-5
+  lora:
+    r: 16
+    alpha: 32
+    target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+output: ./output_B
