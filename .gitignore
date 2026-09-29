@@ -1,4 +1,0 @@
-output/
-*.safetensors
-*.bin
-__pycache__/
